@@ -1,3 +1,15 @@
+# 100 Days App
+## Purpose
+A community where people strive to become more consistent, more disciplined, and more driven than ever before. Takes inspiration from Mark Manson's "Atomic Habits" and provides users with a system to better drive discipline.
+
+## Tech Stack
+- Django (Python 3.10)
+- VueJS Integration
+- TypeScript
+- CSS Libary undecided
+- SQLite3 (Postgres planned in the future)
+
+
 # Things to Include in MVP
 
 - drag up to reload page
@@ -6,9 +18,6 @@
 - clicking into one of the top 20 posts goes to the post view page
 
 # Developers - environment setup instructions
-
-Prepare the below:
-
 Language and version:
 - Python 3.10.5
 
