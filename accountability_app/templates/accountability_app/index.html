@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Posts</title>
+</head>
+
+<body>
+    <div>
+        <h1>100 Days</h1>
+    </div>
+    <h2>Post Something!</h2>
+    <form action="{% url 'accountability_app:new_post' %}" method="post">
+        {% csrf_token %}
+        <textarea name="new_post" id="new_post_area" cols="30" rows="15"></textarea>
+        <input type="submit" value="new_post">
+    </form>
+
+    {% if latest_posts_list %}
+    <h2>Posts</h2>
+    <ul>
+        {% for post in latest_posts_list %}
+        <li><a href="{% url 'accountability_app:detail' post.id %}">
+                From {{post.author}}
+            </a>
+            <p style="font-family:monospace;white-space:pre-wrap;">{{ post.post_text }}</p>
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>No posts are available.</p>
+    {% endif %}
+</body>
+
+</html>
