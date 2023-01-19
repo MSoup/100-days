@@ -1,20 +1,22 @@
-import { createStore, createLogger } from "vuex";
+import { createStore } from "vuex";
 
-const debug = process.env.NODE_ENV !== "production";
+interface IState {
+  token: string;
+  isAuthenticated: boolean;
+}
 
 export default createStore({
   state: {
-    user: {
-      username: "",
-    },
-    isAuthenticated: false,
     token: "",
+    isAuthenticated: false,
   },
+  getters: {},
   mutations: {
     // mutations must be called to modify state, state cannot be mutated directly
-    initializeStore(state) {
-      if (localStorage.getItem("token")) {
-        state.token = localStorage.getItem("token");
+    initializeStore(state: IState) {
+      const token = localStorage.getItem("token");
+      if (typeof token === "string") {
+        state.token = token;
         state.isAuthenticated = true;
       } else {
         state.token = "";
@@ -30,7 +32,6 @@ export default createStore({
       state.isAuthenticated = false;
     },
   },
+  actions: {},
   modules: {},
-  strict: debug,
-  plugins: debug ? [createLogger()] : [],
 });
