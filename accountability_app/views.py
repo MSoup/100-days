@@ -1,10 +1,12 @@
 from django.shortcuts import get_object_or_404, render
-from .models import Post
 from django.http import HttpResponse
 from django.utils import timezone
 from django.contrib.auth import get_user_model
+
 from rest_framework import viewsets
-from serializers import UserSerializer, PostSerializer
+
+from accountability_app.models import Post
+from accountability_app.serializers import UserSerializer, PostSerializer
 
 User = get_user_model()
 

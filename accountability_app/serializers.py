@@ -15,4 +15,5 @@ class PostSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Post
         fields = ["url", "author", "tags", "post_text"]
+        lookup_field = "tags"
 
