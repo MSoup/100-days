@@ -1,8 +1,25 @@
 from django.shortcuts import get_object_or_404, render
 from .models import Post
-from django.http import Http404, HttpResponse
+from django.http import HttpResponse
 from django.utils import timezone
 from django.contrib.auth import get_user_model
+from rest_framework import viewsets
+from serializers import UserSerializer, PostSerializer
+
+User = get_user_model()
+
+# VIEWSETS
+# ViewSets define the view behavior
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+
+class PostViewSet(viewsets.ModelViewSet):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
+
+
 
 
 def index(request):
