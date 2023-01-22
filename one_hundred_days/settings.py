@@ -32,8 +32,8 @@ REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASES": [
         "rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly"
     ],
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 10
+    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
+    "PAGE_SIZE": 10,
 }
 INSTALLED_APPS = [
     "accountability_app.apps.AccountabilityAppConfig",
@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "rest_framework",
+    "snippets",
 ]
 
 MIDDLEWARE = [

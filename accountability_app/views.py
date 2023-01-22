@@ -13,13 +13,14 @@ User = get_user_model()
 # VIEWSETS
 # ViewSets define the view behavior
 class UserViewSet(viewsets.ModelViewSet):
-    queryset = User.objects.all().order_by('id')
+    queryset = User.objects.all().order_by("id")
     serializer_class = UserSerializer
 
 
 class PostViewSet(viewsets.ModelViewSet):
-    queryset = Post.objects.all().order_by('id')
+    queryset = Post.objects.all().order_by("id")
     serializer_class = PostSerializer
+
 
 class TagViewSet(viewsets.ModelViewSet):
     queryset = Tag.objects.all()
