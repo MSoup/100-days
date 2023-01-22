@@ -5,11 +5,13 @@ from django.contrib.auth import get_user_model
 
 
 class Tag(models.Model):
-
     name = models.CharField(max_length=80, unique=True)
-    
+
     def __str__(self):
         return self.name
+
+    class Meta:
+        ordering = ["id"]
 
 
 class Post(models.Model):
