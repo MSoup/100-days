@@ -16,13 +16,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
-from accountability_app.views import UserViewSet, PostViewSet
+from accountability_app.views import UserViewSet, PostViewSet, TagViewSet
 
 
 # Routers provide an easy way of automatically determining the URL conf.
 router = routers.DefaultRouter()
 router.register(r"users", UserViewSet)
 router.register(r"posts", PostViewSet)
+router.register(r"tags", TagViewSet)
 
 
 urlpatterns = [

@@ -5,23 +5,25 @@ from django.contrib.auth import get_user_model
 
 from rest_framework import viewsets
 
-from accountability_app.models import Post
-from accountability_app.serializers import UserSerializer, PostSerializer
+from accountability_app.models import Post, Tag
+from accountability_app.serializers import TagSerializer, UserSerializer, PostSerializer
 
 User = get_user_model()
 
 # VIEWSETS
 # ViewSets define the view behavior
 class UserViewSet(viewsets.ModelViewSet):
-    queryset = User.objects.all()
+    queryset = User.objects.all().order_by('id')
     serializer_class = UserSerializer
 
 
 class PostViewSet(viewsets.ModelViewSet):
-    queryset = Post.objects.all()
+    queryset = Post.objects.all().order_by('id')
     serializer_class = PostSerializer
 
-
+class TagViewSet(viewsets.ModelViewSet):
+    queryset = Tag.objects.all()
+    serializer_class = TagSerializer
 
 
 def index(request):

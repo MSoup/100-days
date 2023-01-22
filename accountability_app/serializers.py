@@ -1,5 +1,5 @@
 from django.contrib.auth import get_user_model
-from accountability_app.models import Post
+from accountability_app.models import Post, Tag
 from rest_framework import serializers
 
 User = get_user_model()
@@ -11,9 +11,20 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
         fields = ["url", "username", "email", "is_staff"]
 
 
-class PostSerializer(serializers.HyperlinkedModelSerializer):
+class PostSerializer(serializers.ModelSerializer):
+    author = serializers.ReadOnlyField(source='author.username')
+    text = serializers.ReadOnlyField(source='post_text')
+    date = serializers.DateTimeField(source="pub_date", format='%Y-%m-%d %H:%M:%S')
+    
     class Meta:
         model = Post
-        fields = ["url", "author", "tags", "post_text"]
-        lookup_field = "tags"
+        fields = ["id", "author", "text", "date", "tags", ]
+
+
+class TagSerializer(serializers.ModelSerializer):
+    name = serializers.ReadOnlyField()
+
+    class Meta:
+        model = Tag
+        fields = ["name"]
 
