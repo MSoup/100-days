@@ -13,13 +13,14 @@ User = get_user_model()
 # VIEWSETS
 # ViewSets define the view behavior
 class UserViewSet(viewsets.ModelViewSet):
-    queryset = User.objects.all().order_by('id')
+    queryset = User.objects.all().order_by("id")
     serializer_class = UserSerializer
 
 
 class PostViewSet(viewsets.ModelViewSet):
-    queryset = Post.objects.all().order_by('id')
+    queryset = Post.objects.all().order_by("id")
     serializer_class = PostSerializer
+
 
 class TagViewSet(viewsets.ModelViewSet):
     queryset = Tag.objects.all()
@@ -27,7 +28,7 @@ class TagViewSet(viewsets.ModelViewSet):
 
 
 def index(request):
-    latest_posts_list = Post.objects.order_by("-pub_date")[:15]
+    latest_posts_list = Post.objects.order_by("-created_at")[:15]
     context = {
         "latest_posts_list": latest_posts_list,
     }
@@ -35,7 +36,7 @@ def index(request):
 
 
 def detail(request, post_id):
-    # post contains author, pub_date, post_text
+    # post contains author, created_at, post_text
     post = get_object_or_404(Post, pk=post_id)
     return render(request, "accountability_app/detail.html", {"post": post})
 
@@ -50,9 +51,9 @@ def new_post(request):
         # get first user for now
         author = User.objects.get(id=1)
         post_text = request.POST["new_post"]
-        new_post = Post(post_text=post_text, pub_date=timezone.now(), author=author)
+        new_post = Post(text=post_text, author=author)
         new_post.save()
-        print("Saved new post:", new_post.post_text)
+        print("Saved new post:", new_post.text)
         # else:
 
     return HttpResponse("Success")

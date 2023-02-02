@@ -24,7 +24,7 @@
     <ul>
         {% for post in latest_posts_list %}
         <li style="padding-bottom:10px;">From {{post.author}}
-            <p style="font-family:monospace;white-space:pre-wrap;">{{ post.post_text }}</p>
+            <p style="font-family:monospace;white-space:pre-wrap;">{{ post.text }}</p>
             <a href="{% url 'accountability_app:detail' post.id %}">Go to post...</a>
         </li>
         {% endfor %}

@@ -14,7 +14,7 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 class PostSerializer(serializers.ModelSerializer):
     author = serializers.ReadOnlyField(source="author.username")
     text = serializers.ReadOnlyField(source="post_text")
-    date = serializers.DateTimeField(source="pub_date", format="%Y-%m-%d %H:%M:%S")
+    date = serializers.DateTimeField(source="created_at", format="%Y-%m-%d %H:%M:%S")
     tags = serializers.StringRelatedField(many=True)
 
     class Meta:

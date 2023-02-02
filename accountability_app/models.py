@@ -15,13 +15,13 @@ class Tag(models.Model):
 
 
 class Post(models.Model):
-    post_text = models.TextField(max_length=278)
-    pub_date = models.DateTimeField("date published", default=timezone.now())
     author = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+    text = models.TextField(max_length=278)
+    created_at = models.DateTimeField("date published", auto_now_add=True)
     tags = models.ManyToManyField(Tag)
 
     def was_posted_today(self):
-        return self.pub_date >= timezone.now() - datetime.timedelta(days=1)
+        return self.created_at >= timezone.now() - datetime.timedelta(days=1)
 
     def __str__(self):
-        return self.post_text[:20]
+        return self.text[:20]
